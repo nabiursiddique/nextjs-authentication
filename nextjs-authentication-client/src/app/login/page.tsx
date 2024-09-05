@@ -1,4 +1,5 @@
 'use client';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -35,7 +36,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className='card w-[70%] h-[80%] shadow-xl bg-base-100'>
+        <div className='card w-[70%] h-[83%] shadow-xl bg-base-100'>
           <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
             <div className='form-control mt-5'>
               <label className='label'>
@@ -76,7 +77,7 @@ const LoginPage = () => {
             </p>
           </form>
           <p className='text-center'>Or Sign Up Using</p>
-          <div className='flex justify-center mb-10 mt-2'>
+          <div className='flex justify-center mb-12 mt-2'>
             <button className='btn btn-circle '>
               <Image
                 src='https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png'
@@ -85,7 +86,14 @@ const LoginPage = () => {
                 alt='google logo'
               />
             </button>
-            <button className='btn btn-circle'>
+            <button
+              className='btn btn-circle'
+              onClick={() =>
+                signIn('github', {
+                  callbackUrl: 'http://localhost:3000/dashboard',
+                })
+              }
+            >
               <Image
                 src='https://cdn-icons-png.flaticon.com/512/25/25231.png'
                 width={35}
