@@ -15,6 +15,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // user login session/info
   const session = await getServerSession(authOptions);
   return (
     <html lang='en' data-theme='light'>
